@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk - Sistem Manajemen Kerja</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="login-page">
+
+    <div class="login-container">
+        <div class="login-header">
+            <div class="login-logo">
+                <span>SK</span>
+            </div>
+            <h2>Selamat Datang</h2>
+            <p>Silakan masuk untuk mengelola jadwal Anda</p>
+        </div>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <div class="input-wrapper">
+                    <span class="input-icon">👤</span>
+                    <input type="text" id="username" required placeholder="Masukkan username Anda">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                    <span class="input-icon">🔒</span>
+                    <input type="password" id="password" required placeholder="Masukkan password Anda">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-login">
+                <span>Masuk Sekarang</span>
+                <span class="btn-arrow">→</span>
+            </button>
+        </form>
+
+        <div class="credentials-hint">
+            <div class="hint-header">
+                <span>💡</span> <strong>Akun Demo (Uji Coba)</strong>
+            </div>
+            <div class="hint-body">
+                <div class="hint-row">
+                    <span class="hint-role">Admin:</span>
+                    <span class="hint-creds">admin / admin123</span>
+                </div>
+                <div class="hint-row">
+                    <span class="hint-role">Karyawan:</span>
+                    <span class="hint-creds">karyawan / user123</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Memastikan tema gelap/terang terbawa sejak di halaman login
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+        });
+    </script>
+</body>
+</html>

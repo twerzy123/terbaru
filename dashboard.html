@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Manajemen Kerja</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="sidebar">
+            <div class="logo">
+                <h3>Sistem Kerja</h3>
+            </div>
+            <ul>
+                <li><a href="#" class="active" onclick="showSection('overview')">Ringkasan</a></li>
+                <li><a href="#" onclick="showSection('absensi')">Absensi</a></li>
+                <li><a href="#" onclick="showSection('gaji')">Gaji</a></li>
+                <li><a href="#" onclick="showSection('pelanggaran')">Pelanggaran</a></li>
+                <li><a href="#" onclick="showSection('chat')">Broadcast Chat</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <p>© 2026 Sistem Kerja</p>
+            </div>
+        </nav>
+
+        <main class="content">
+            <header>
+                <div class="header-left">
+                    <h2>Panel Kendali Admin</h2>
+                    <div class="date-now" id="currentDate"></div>
+                </div>
+
+                <div class="header-right">
+                    <div class="profile-dropdown" onclick="toggleDropdown()">
+                        <div class="profile-info">
+                            <span class="profile-name">Tirta Rizky</span>
+                            <span class="profile-role" id="userRoleHeader">Admin</span>
+                        </div>
+                        <div class="profile-avatar">
+                            <span>TR</span>
+                        </div>
+                        
+                        <div class="dropdown-menu" id="profileDropdownMenu">
+                            <div class="dropdown-item theme-item" onclick="toggleTheme(); event.stopPropagation();">
+                                <span id="themeLabel">Mode Gelap</span>
+                                <div class="theme-icons">
+                                    <span class="icon-sun">☀️</span>
+                                    <span class="icon-moon">🌙</span>
+                                </div>
+                            </div>
+                            <hr class="dropdown-divider">
+                            <div class="dropdown-item logout-item" onclick="logout()">
+                                <span>Keluar Akun</span>
+                                <span>🚪</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section id="overview" class="tab-content active">
+                <div class="cards-grid">
+                    <div class="card"><h3>15</h3><p>Karyawan Hadir</p></div>
+                    <div class="card"><h3>2</h3><p>Pelanggaran Hari Ini</p></div>
+                    <div class="card"><h3>Rp 45jt</h3><p>Total Gaji Bulan Ini</p></div>
+                </div>
+            </section>
+
+            <section id="absensi" class="tab-content">
+                <h3>Data Absensi (Admin & Karyawan)</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>Nama</th><th>Role</th><th>Waktu Masuk</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Tirta Rizky (Anda)</td><td>Admin</td><td>08:00</td><td><span class="badge success">Tepat Waktu</span></td></tr>
+                            <tr><td>Budi Santoso</td><td>Karyawan</td><td>08:15</td><td><span class="badge danger">Terlambat</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="gaji" class="tab-content">
+                <h3>Monitoring Gaji</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>Nama</th><th>Gaji Pokok</th><th>Potongan</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Tirta Rizky (Anda)</td><td>Rp 7.500.000</td><td>-</td><td><span class="badge success">Sudah Masuk</span></td></tr>
+                            <tr><td>Budi Santoso</td><td>Rp 4.000.000</td><td>- Rp 50.000</td><td><span class="badge warning">Tertunda</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="pelanggaran" class="tab-content">
+                <h3>Catatan Pelanggaran</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>Nama</th><th>Jenis Pelanggaran</th><th>Tanggal</th><th>Sanksi</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Budi Santoso</td><td>Terlambat > 3x</td><td>05/04/2026</td><td><span class="badge danger">Teguran Lisan</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="chat" class="tab-content">
+                <h3>Broadcast Chat ke Karyawan / Mandor</h3>
+                <div class="chat-box">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="msg system"><p>Sistem: Selamat datang di ruang pengumuman.</p></div>
+                    </div>
+                    <div class="chat-input-area" id="adminChatArea">
+                        <input type="text" id="chatInput" placeholder="Ketik pesan pengumuman di sini...">
+                        <button onclick="sendMessage()">Kirim</button>
+                    </div>
+                    <div class="chat-input-area hidden" id="karyawanChatArea">
+                        <input type="text" placeholder="Anda hanya bisa membaca pesan di sini..." readonly>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
