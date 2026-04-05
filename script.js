@@ -1,8 +1,8 @@
 // --- LOGIKA HALAMAN LOGIN ---
 // Data Akun Demo
 const USERS = {
-    admin: { pass: "admin123", role: "Admin" },
-    karyawan: { pass: "user123", role: "Karyawan" }
+    admin: { pass: "admin1", role: "admin" },
+    karyawan: { pass: "user1", role: "user" }
 };
 
 // Menangkap event submit form login
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('userRole', USERS[usernameInput].role);
                 
                 // Pindah halaman ke Dashboard
-                window.location.href = 'dashboard.html';
+                window.location.href = 'index.html';
             } else {
                 alert('Username atau password salah! Silakan cek petunjuk akun demo di bawah.');
             }
